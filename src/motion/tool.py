@@ -124,6 +124,13 @@ async def f_xbox(data_callback, step_callback):
 
     joystick = pygame.joystick.Joystick(joystick_index)
     joystick.init()
+    deadzone=0.15
+
+    # Cache last-reported values to emit only on change
+    last_axes = [None] * joystick.get_numaxes()
+    last_buttons = [None] * joystick.get_numbuttons()
+    last_hats = [None] * joystick.get_numhats()
+    xbox_changed = True
 
     await data_callback(period)
     while not any(
@@ -132,24 +139,40 @@ async def f_xbox(data_callback, step_callback):
         entries = []
         for i in range(joystick.get_numaxes()):
             axis = joystick.get_axis(i)
-            log.info(f"Pygame: axes[{i}]: {axis}")
+            if abs(axis) < deadzone:
+                axis=0.0
+            if last_axes[i] != axis:
+                last_axes[i] = axis 
+                xbox_changed = True
             entries.append((e_axis[i], max(-32767, min(32768, int(axis * 32768)))))
+        log.info(f"Pygame: axis  {entries}")
 
         for i in range(joystick.get_numbuttons()):
             button = joystick.get_button(i)
-            log.info(f"Pygame: button[{i}]: {button}")
+            if last_buttons[i] != button:
+                last_buttons[i] = button
+                xbox_changed = True
+
+            #log.info(f"Pygame: button[{i}]: {button}")
             entries.append((e_button[i], button))
 
         for i in range(joystick.get_numhats()):
             assert i == 0
-            hx, hy = joystick.get_hat(i)
-            log.info(f"Pygame: hat[{i}]: {hx}, {hy}")
+            pos = joystick.get_hat(i)
+            hx, hy= pos
+            if last_hats[i] != pos:
+                last_hats[i] = pos
+                xbox_changed = True
+            #log.info(f"Pygame: hat[{i}]: {hx}, {hy}")
             entries.append(("BUTTON_DPAD_UP", int(hy == 1)))
             entries.append(("BUTTON_DPAD_DOWN", int(hy == -11)))
             entries.append(("BUTTON_DPAD_LEFT", int(hx == -1)))
             entries.append(("BUTTON_DPAD_RIGHT", int(hx == 1)))
 
-        await step_callback(entries)
+        if xbox_changed:
+            print('xxxxx xbox xmitting')
+            await step_callback(entries)
+        xbox_changed = False
 
         await data_callback(period)
 
