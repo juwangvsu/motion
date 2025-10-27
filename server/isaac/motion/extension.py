@@ -117,6 +117,10 @@ def f_step(articulation, controller, provider, gamepad, se3, joint, link, step):
 
     advance = se3.advance()
     command, gripper = advance[:6].unsqueeze(0), advance[6]
+    command[0][0] = torch.clamp(command[0][0], min=-0.05, max=0.05)
+    command[0][1] = torch.clamp(command[0][1], min=-0.05, max=0.05)
+    command[0][2] = torch.clamp(command[0][2], min=-0.05, max=0.05)
+    command[0][5] = 0.0
     print(f"[motion.extension] [run_call] Command: {command}, {gripper}")
 
     jacobian = articulation.get_jacobian_matrices()

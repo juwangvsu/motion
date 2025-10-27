@@ -137,7 +137,7 @@ async def f_xbox(data_callback, step_callback):
         e.type == pygame.QUIT for e in pygame.event.get()
     ):  # pygame.event.pump() implicitly called with get()
         entries = []
-        for i in range(joystick.get_numaxes()):
+        for i in range(min(6,joystick.get_numaxes())):
             axis = joystick.get_axis(i)
             if abs(axis) < deadzone:
                 axis=0.0
@@ -147,7 +147,7 @@ async def f_xbox(data_callback, step_callback):
             entries.append((e_axis[i], max(-32767, min(32768, int(axis * 32768)))))
         log.info(f"Pygame: axis  {entries}")
 
-        for i in range(joystick.get_numbuttons()):
+        for i in range(min(11,joystick.get_numbuttons())):
             button = joystick.get_button(i)
             if last_buttons[i] != button:
                 last_buttons[i] = button
@@ -174,7 +174,7 @@ async def f_xbox(data_callback, step_callback):
             await step_callback(entries)
         xbox_changed = False
 
-        await data_callback(period)
+        #await data_callback(period)
 
     return
 
