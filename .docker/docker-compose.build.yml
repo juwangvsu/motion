@@ -191,7 +191,7 @@ services:
       dockerfile_inline: |
         FROM nvcr.io/nvidia/isaac-lab:2.2.0
         RUN apt -y -qq update && \
-            apt -y -qq install curl ffmpeg
+            apt -y -qq install curl ffmpeg vim
         COPY LICENSE /app/LICENSE
         COPY pyproject.toml /app/pyproject.toml
         COPY src /app/src
@@ -210,7 +210,8 @@ services:
           sleep infinity \n\
           exit 0 \n\
         fi \n\
-        /isaac-sim/runheadless.sh --enable motion.extension --enable isaacsim.replicator.agent.core  --enable isaacsim.replicator.writers \n\
+        echo /isaac-sim/runheadless.sh --enable motion.extension --enable isaacsim.replicator.agent.core  --enable isaacsim.replicator.writers \n\
+        sleep infinity \n\
         exit 0' >/entrypoint.sh
         RUN chmod +x /entrypoint.sh
         ENTRYPOINT ["/entrypoint.sh"]

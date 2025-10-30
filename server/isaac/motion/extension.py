@@ -98,7 +98,7 @@ def f_gamepad(name, entry):
     assert False, f"{name} {entry}"
 
 
-def f_step(articulation, controller, provider, gamepad, se3, joint, link, step):
+async def f_step(articulation, controller, provider, gamepad, se3, joint, link, step):
     step = json.loads(step.decode())
     print(f"[motion.extension] [run_call] Step data={step}")
 
@@ -106,77 +106,79 @@ def f_step(articulation, controller, provider, gamepad, se3, joint, link, step):
         assert False, f"{step}"
     assert len(step["gamepad"]) == 1
     effector, entries = next(iter(step["gamepad"].items()))
-    print(f"[motion.extension] [run_call] Step: effector={effector} entries={entries}")
+    #print(f"[motion.extension] [run_call] Step: effector={effector} entries={entries}")
 
     for name, entry in entries:
-        print(f"[motion.extension] [run_call] Step: {name}={entry}")
+        #print(f"[motion.extension] [run_call] Step: {name}={entry}")
         if name == "BUTTON_GUIDE":
             continue
         provider.buffer_gamepad_event(gamepad, *f_gamepad(name, entry))
     provider.update_gamepad(gamepad)
+    await omni.kit.app.get_app().next_update_async()
 
     advance = se3.advance()
     command, gripper = advance[:6].unsqueeze(0), advance[6]
+    print(f"[motion.extension] [run_call] Command: {command}, {gripper}")
     command[0][0] = torch.clamp(command[0][0], min=-0.05, max=0.05)
     command[0][1] = torch.clamp(command[0][1], min=-0.05, max=0.05)
     command[0][2] = torch.clamp(command[0][2], min=-0.05, max=0.05)
     command[0][5] = 0.0
-    print(f"[motion.extension] [run_call] Command: {command}, {gripper}")
+    print(f"[motion.extension] [run_call] clamp Command: {command}, {gripper}")
 
     jacobian = articulation.get_jacobian_matrices()
     print(f"[motion.extension] [run_call] Jacobian: {jacobian.shape}")
 
     index = next(
-        (
-            index
-            for index, entries in enumerate(articulation.link_paths)
-            if effector in entries
-        )
-    )
+            (
+                index
+                for index, entries in enumerate(articulation.link_paths)
+                if effector in entries
+                )
+            )
     entry = articulation.link_paths[index].index(effector) - 1  # first is base_link
     print(
-        f"[motion.extension] [run_call] Jacobian: index={index} entry={entry} effector={effector} link={articulation.link_paths}"
-    )
+            f"[motion.extension] [run_call] Jacobian: index={index} entry={entry} effector={effector} link={articulation.link_paths}"
+            )
     assert (
-        articulation.jacobian_matrix_shape[0] == len(articulation.link_paths[index]) - 1
-    ), f"{articulation.jacobian_matrix_shape} vs. {articulation.link_paths}({index})"
+            articulation.jacobian_matrix_shape[0] == len(articulation.link_paths[index]) - 1
+            ), f"{articulation.jacobian_matrix_shape} vs. {articulation.link_paths}({index})"
     jacobian = torch.tensor(jacobian[index, entry, :, :], dtype=torch.float32)
     print(f"[motion.extension] [run_call] Jacobian entry: {jacobian.shape}")
 
     position, quaternion = link.get_world_poses()  # quaternion: w, x, y, z
     position, quaternion = (
-        torch.tensor(
-            position[link.paths.index(effector) : link.paths.index(effector) + 1],
-            dtype=torch.float32,
-        ),
-        torch.tensor(
-            quaternion[link.paths.index(effector) : link.paths.index(effector) + 1],
-            dtype=torch.float32,
-        ),
-    )
+            torch.tensor(
+                position[link.paths.index(effector) : link.paths.index(effector) + 1],
+                dtype=torch.float32,
+                ),
+            torch.tensor(
+                quaternion[link.paths.index(effector) : link.paths.index(effector) + 1],
+                dtype=torch.float32,
+                ),
+            )
     print(
-        f"[motion.extension] [run_call] Jacobian position/quaternion: {position.shape}/{quaternion.shape}"
-    )
+            f"[motion.extension] [run_call] Jacobian position/quaternion: {position.shape}/{quaternion.shape}"
+            )
 
     controller.set_command(
-        command=command,
-        ee_pos=position,
-        ee_quat=quaternion,
-    )
+            command=command,
+            ee_pos=position,
+            ee_quat=quaternion,
+            )
     print(f"[motion.extension] [run_call] Jacobian command: done")
 
     positions = numpy.asarray(articulation.get_dof_positions())
     joint_pos = torch.tensor(positions[index : index + 1], dtype=torch.float32)
 
     print(
-        f"[motion.extension] [run_call] Jacobian compute: jacobian={jacobian.shape} joint_pos={joint_pos.shape}"
-    )
+            f"[motion.extension] [run_call] Jacobian compute: jacobian={jacobian.shape} joint_pos={joint_pos.shape}"
+            )
     joint_pos = controller.compute(
-        ee_pos=position,
-        ee_quat=quaternion,
-        jacobian=jacobian,
-        joint_pos=joint_pos,
-    )
+            ee_pos=position,
+            ee_quat=quaternion,
+            jacobian=jacobian,
+            joint_pos=joint_pos,
+            )
     print(f"[motion.extension] [run_call] Jacobian compute: {joint_pos}")
 
     positions[index : index + 1] = numpy.asarray(joint_pos)
@@ -194,18 +196,18 @@ def f_step(articulation, controller, provider, gamepad, se3, joint, link, step):
 
             print(f"[motion.extension] [run_call] Gripper: {metadata['gripper']}")
             for i in [
-                articulation.dof_paths[index].index(e) for e in metadata["gripper"]
-            ]:
+                    articulation.dof_paths[index].index(e) for e in metadata["gripper"]
+                    ]:
                 limit_l, limit_u = lower[index][i], upper[index][i]
                 print(
-                    f"[motion.extension] [run_call] Gripper(Limit[{i}]): {gripper} ({limit_l} {limit_u})"
-                )
+                        f"[motion.extension] [run_call] Gripper(Limit[{i}]): {gripper} ({limit_l} {limit_u})"
+                        )
                 positions[index][i] = limit_l + (limit_u - limit_l) * (
-                    (gripper + 1.0) / 2
-                )
+                        (gripper + 1.0) / 2
+                        )
                 print(
-                    f"[motion.extension] [run_call] Gripper Position[{i}]: {positions[index][i]}"
-                )
+                        f"[motion.extension] [run_call] Gripper Position[{i}]: {positions[index][i]}"
+                        )
 
     articulation.set_dof_position_targets(positions)
     print(f"[motion.extension] [run_call] Articulations positions: {positions}")
@@ -214,129 +216,129 @@ def f_step(articulation, controller, provider, gamepad, se3, joint, link, step):
 
 
 def f_data(
-    e,
-    session,
-    interface,
-    channel,
-    articulation,
-    controller,
-    joint,
-    link,
-    annotator,
-    callback,
-):
-    print(f"[motion.extension] [run_call] Annotator callback")
+        e,
+        session,
+        interface,
+        channel,
+        articulation,
+        controller,
+        joint,
+        link,
+        annotator,
+        callback,
+        ):
+    #print(f"[motion.extension] [run_call] Annotator callback")
     entries = {n: numpy.asarray(e.get_data()) for n, e in annotator.items()}
     # Expect numpy.uint8 or numpy.float64
     assert all(e.dtype in (numpy.uint8, numpy.float64) for e in entries.values()), {
-        n: e.dtype for n, e in entries.items()
-    }
+            n: e.dtype for n, e in entries.items()
+            }
 
     # Expect H×W×C with C = 3 (BGR) or 4 (BGRA).
     assert all(
-        (
-            (e.ndim == 1 and e.shape[0] == 0)
-            or (
-                e.ndim == 3
-                and e.shape[0] > 0
-                and e.shape[1] > 0
-                and e.shape[2] in (3, 4)
-            )
-        )
-        for e in entries.values()
-    ), {n: e.shape for n, e in entries.items()}
+            (
+                (e.ndim == 1 and e.shape[0] == 0)
+                or (
+                    e.ndim == 3
+                    and e.shape[0] > 0
+                    and e.shape[1] > 0
+                    and e.shape[2] in (3, 4)
+                    )
+                )
+            for e in entries.values()
+            ), {n: e.shape for n, e in entries.items()}
     # BGRA/BGR -> RGBA/RGB
     entries = {
-        n: (
-            e
-            if e.size == 0
-            else (e[..., [2, 1, 0]] if e.shape[2] == 3 else e[..., [2, 1, 0, 3]])
-        )
-        for n, e in entries.items()
-    }
+            n: (
+                e
+                if e.size == 0
+                else (e[..., [2, 1, 0]] if e.shape[2] == 3 else e[..., [2, 1, 0, 3]])
+                )
+            for n, e in entries.items()
+            }
     # numpy.uint8
     entries = {
-        n: (
-            (numpy.clip(e, 0.0, 1.0) * 255).astype(numpy.uint8)
-            if e.dtype is not numpy.uint8
-            else e
-        )
-        for n, e in entries.items()
-    }
+            n: (
+                (numpy.clip(e, 0.0, 1.0) * 255).astype(numpy.uint8)
+                if e.dtype is not numpy.uint8
+                else e
+                )
+            for n, e in entries.items()
+            }
     entries = {n: numpy.ascontiguousarray(e) for n, e in entries.items()}
     entries = {
-        n: {
-            "dtype": str(e.dtype),
-            "shape": str(e.shape),
-        }
-        for n, e in entries.items()
-    }
-    print(f"[motion.extension] [run_call] Annotator callback - camera: {entries}")
+            n: {
+                "dtype": str(e.dtype),
+                "shape": str(e.shape),
+                }
+            for n, e in entries.items()
+            }
+    #print(f"[motion.extension] [run_call] Annotator callback - camera: {entries}")
 
-    print(f"[motion.extension] [run_call] Articulation callback")
+    #print(f"[motion.extension] [run_call] Articulation callback")
     state = dict(
-        zip(
-            list(itertools.chain.from_iterable(articulation.dof_paths)),
-            list(
-                itertools.chain.from_iterable(
-                    numpy.asarray(articulation.get_dof_positions()).tolist()
+            zip(
+                list(itertools.chain.from_iterable(articulation.dof_paths)),
+                list(
+                    itertools.chain.from_iterable(
+                        numpy.asarray(articulation.get_dof_positions()).tolist()
+                        )
+                    ),
                 )
-            ),
-        )
-    )
+            )
     state = {k: v for k, v in state.items() if k in joint}
-    print(f"[motion.extension] [run_call] Articulation callback - state: {state}")
+    #print(f"[motion.extension] [run_call] Articulation callback - state: {state}")
 
-    print(f"[motion.extension] [run_call] Link callback")
+    #print(f"[motion.extension] [run_call] Link callback")
     position, quaternion = link.get_world_poses()  # quaternion: w, x, y, z
     position, quaternion = (
-        numpy.asarray(position),
-        numpy.asarray(quaternion)[:, [1, 2, 3, 0]],
-    )  # quaternion: x, y, z, w
+            numpy.asarray(position),
+            numpy.asarray(quaternion)[:, [1, 2, 3, 0]],
+            )  # quaternion: x, y, z, w
     pose = {
-        e: {
-            "position": {
-                "x": float(p[0]),
-                "y": float(p[1]),
-                "z": float(p[2]),
-            },
-            "orientation": {
-                "x": float(q[0]),
-                "y": float(q[1]),
-                "z": float(q[2]),
-                "w": float(q[3]),
-            },
-        }
-        for e, p, q in zip(link.paths, position, quaternion)
-    }
-    print(f"[motion.extension] [run_call] Link callback - pose: {pose}")
+            e: {
+                "position": {
+                    "x": float(p[0]),
+                    "y": float(p[1]),
+                    "z": float(p[2]),
+                    },
+                "orientation": {
+                    "x": float(q[0]),
+                    "y": float(q[1]),
+                    "z": float(q[2]),
+                    "w": float(q[3]),
+                    },
+                }
+            for e, p, q in zip(link.paths, position, quaternion)
+            }
+    #print(f"[motion.extension] [run_call] Link callback - pose: {pose}")
     data = json.dumps(
-        {
-            "joint": state,
-            "camera": entries,
-            "pose": pose,
-        },
-        sort_keys=True,
-    ).encode()
-    print(f"[motion.extension] [run_call] Callback: {data}")
+            {
+                "joint": state,
+                "camera": entries,
+                "pose": pose,
+                },
+            sort_keys=True,
+            ).encode()
+    #print(f"[motion.extension] [run_call] Callback: {data}")
 
     return callback(data) if callback is not None else data
 
 
 async def run_tick(
-    session,
-    interface,
-    channel,
-    articulation,
-    controller,
-    provider,
-    gamepad,
-    se3,
-    joint,
-    link,
-    annotator,
-    loop,
-):
+        session,
+        interface,
+        channel,
+        articulation,
+        controller,
+        provider,
+        gamepad,
+        se3,
+        joint,
+        link,
+        annotator,
+        loop,
+        ):
     print(f"[motion.extension] [run_call] [run_tick] Timeline playing")
     omni.timeline.get_timeline_interface().play()
     print(f"[motion.extension] [run_call] [run_tick] Timeline in play")
@@ -344,17 +346,17 @@ async def run_tick(
     while True:
         await omni.kit.app.get_app().next_update_async()
         data = f_data(
-            None,
-            session=session,
-            interface=interface,
-            channel=channel,
-            articulation=articulation,
-            controller=controller,
-            joint=joint,
-            link=link,
-            annotator=annotator,
-            callback=None,
-        )
+                None,
+                session=session,
+                interface=interface,
+                channel=channel,
+                articulation=articulation,
+                controller=controller,
+                joint=joint,
+                link=link,
+                annotator=annotator,
+                callback=None,
+                )
 
         try:
             print(f"[motion.extension] [run_call] [run_tick] Data {data}")
@@ -362,16 +364,16 @@ async def run_tick(
             print(f"[motion.extension] [run_call] [run_tick] Channel callback done")
             step = await interface.tick(data)
             print(f"[motion.extension] [run_call] [run_tick] Interface step {step}")
-            f_step(
-                articulation=articulation,
-                controller=controller,
-                provider=provider,
-                gamepad=gamepad,
-                se3=se3,
-                joint=joint,
-                link=link,
-                step=step,
-            )
+            await f_step(
+                    articulation=articulation,
+                    controller=controller,
+                    provider=provider,
+                    gamepad=gamepad,
+                    se3=se3,
+                    joint=joint,
+                    link=link,
+                    step=step,
+                    )
             print(f"[motion.extension] [run_call] [run_tick] Step step={step}")
         except Exception as e:
             print(f"[motion.extension] [run_call] [run_tick] Exception: {e}")
@@ -379,23 +381,23 @@ async def run_tick(
 
 
 async def run_norm(
-    session,
-    interface,
-    channel,
-    articulation,
-    controller,
-    provider,
-    gamepad,
-    se3,
-    joint,
-    link,
-    annotator,
-    loop,
-):
-    @throttle(0.2)
+        session,
+        interface,
+        channel,
+        articulation,
+        controller,
+        provider,
+        gamepad,
+        se3,
+        joint,
+        link,
+        annotator,
+        loop,
+        ):
+    @throttle(2.0)
     def callback(data):
         try:
-            print(f"[motion.extension] [run_call] [run_norm] Data {data}")
+            #print(f"[motion.extension] [run_call] [run_norm] Data {data}")
             asyncio.run_coroutine_threadsafe(channel.publish_data(session, data), loop)
             print(f"[motion.extension] [run_call] [run_norm] Channel callback done")
             asyncio.run_coroutine_threadsafe(interface.send(data), loop)
@@ -406,23 +408,23 @@ async def run_norm(
 
     print(f"[motion.extension] [run_call] [run_norm] subscription")
     subscription = (
-        omni.kit.app.get_app()
-        .get_update_event_stream()
-        .create_subscription_to_pop(
-            functools.partial(
-                f_data,
-                session=session,
-                interface=interface,
-                channel=channel,
-                articulation=articulation,
-                controller=controller,
-                joint=joint,
-                link=link,
-                annotator=annotator,
-                callback=callback,
+            omni.kit.app.get_app()
+            .get_update_event_stream()
+            .create_subscription_to_pop(
+                functools.partial(
+                    f_data,
+                    session=session,
+                    interface=interface,
+                    channel=channel,
+                    articulation=articulation,
+                    controller=controller,
+                    joint=joint,
+                    link=link,
+                    annotator=annotator,
+                    callback=callback,
+                    )
+                )
             )
-        )
-    )
     print(f"[motion.extension] [run_call] [run_norm] Timeline playing")
     omni.timeline.get_timeline_interface().play()
     print(f"[motion.extension] [run_call] [run_norm] Timeline in play")
@@ -430,20 +432,20 @@ async def run_norm(
     while True:
         await omni.kit.app.get_app().next_update_async()
         step = await interface.recv()
-        print(f"[motion.extension] [run_call] [run_norm] Interface step {step}")
+        print(f"\n\n\n[motion.extension] [run_call] [run_norm] Interface step {step}")
         if step is None:
             continue
-        f_step(
-            articulation=articulation,
-            controller=controller,
-            provider=provider,
-            gamepad=gamepad,
-            se3=se3,
-            joint=joint,
-            link=link,
-            step=step,
-        )
-        print(f"[motion.extension] [run_call] [run_norm] Step step={step}")
+        await f_step(
+                articulation=articulation,
+                controller=controller,
+                provider=provider,
+                gamepad=gamepad,
+                se3=se3,
+                joint=joint,
+                link=link,
+                step=step,
+                )
+        print(f"[motion.extension] [run_call] [run_norm] Step step={step}i\n####################################")
 
 
 async def run_call(session, call):
@@ -471,9 +473,9 @@ async def run_call(session, call):
 
     print("[motion.extension] [run_call] Opening stage...")
     await ctx.open_stage_async(
-        "file:///storage/node/scene/scene.usd",
-        load_set=omni.usd.UsdContextInitialLoadSet.LOAD_ALL,
-    )
+            "file:///storage/node/scene/scene.usd",
+            load_set=omni.usd.UsdContextInitialLoadSet.LOAD_ALL,
+            )
 
     print("[motion.extension] [run_call] Waiting stage...")
     stage = ctx.get_stage()

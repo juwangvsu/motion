@@ -123,6 +123,9 @@ async def f_xbox(data_callback, step_callback):
     pygame.joystick.init()
 
     joystick = pygame.joystick.Joystick(joystick_index)
+    print(
+        f"GameController: pygame Joystick={joystick}"
+    )
     joystick.init()
     deadzone=0.15
 
@@ -316,7 +319,7 @@ async def f_step(session, control, effector, gripper, data_callback):
                 )
 
             await stream.step(step)
-            log.info(f"Step: {step}")
+            #log.info(f"Step: {step}")
 
         if control == "xbox":
             await f_xbox(
@@ -564,10 +567,10 @@ async def f_quick(
 
                         async def f_data():
                             for i in itertools.count():
-                                log.info(f"Data: wait {i}")
+                                #log.info(f"Data: wait {i}")
                                 with contextlib.suppress(asyncio.TimeoutError):
                                     msg = await stream.data()
-                                    log.info(f"Data: {msg}")
+                                    #log.info(f"Data: {msg}")
                                 await asyncio.sleep(0)
 
                         await asyncio.gather(
