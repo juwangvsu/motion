@@ -1,3 +1,10 @@
+
+
+-----------10/30/25 tool_1 counter runner--------------------------------
+when ctrl c client, how to delete the runner at server side?
+or should the next client kill the current runner and create a new runner?
+
+----------------------------------------------------
 docker compose -f docker/docker-compose.build.yml build
 
     command[0][0]=random.random()

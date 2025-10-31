@@ -494,9 +494,9 @@ async def run_call(session, call):
     print(f"[motion.extension] [run_call] Gamepad: {gamepad}")
     se3 = isaaclab.devices.gamepad.Se3Gamepad(
         isaaclab.devices.gamepad.Se3GamepadCfg(
-            dead_zone=0.05,
-            pos_sensitivity=0.2,
-            rot_sensitivity=0.4,
+            dead_zone=0.1,
+            pos_sensitivity=0.1,
+            rot_sensitivity=0.1,
         )
     )
     print(f"[motion.extension] [run_call] Gamepad SE3: {se3}")

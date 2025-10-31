@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 async def run_norm(context, session, ch):
     async def f(msg):
-        log.info(f"[main] msg={msg}")
+        log.info(f"[main] xxx msg={msg}")
 
         step = json.loads(msg.data)
         log.info(f"[main] model step={step}")

@@ -173,7 +173,8 @@ class Se3Gamepad(DeviceBase):
         """
         # check if the event is a button press
         cur_val = event.value
-        print('xxxx gamepad event ', event.input, event.value)
+        print('\n\nxxxx gamepad event ', event.input, event.value)
+        print('xxxx gamepad event delta_pose_raw before', self._delta_pose_raw)
         if abs(cur_val) < self.dead_zone:
             cur_val = 0
         # -- button
@@ -183,8 +184,8 @@ class Se3Gamepad(DeviceBase):
                 self._close_gripper = not self._close_gripper
         # -- left and right stick
         if event.input in self._INPUT_STICK_VALUE_MAPPING:
-            print('yyy gamepad stick update')
             direction, axis, value = self._INPUT_STICK_VALUE_MAPPING[event.input]
+            print('yyy gamepad stick update val, cur_val, newval', value, cur_val, value*cur_val)
             # change the value only if the stick is moved (soft press)
             self._delta_pose_raw[direction, axis] = value * cur_val
         # -- dpad (4 arrow buttons on the console)

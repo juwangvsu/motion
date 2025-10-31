@@ -478,7 +478,9 @@ async def session_play(
             )
             break
         else:
-            log.debug(f"[Session {session.uuid}] Node busy: {node}")
+            log.info(f"[Session {session.uuid}] Node busy: {node}")
+            chosen = node
+            break
 
     if chosen is None:
         log.info(f"[Session {session.uuid}] All nodes busy (no capacity)")
@@ -561,10 +563,14 @@ async def session_stream(ws: WebSocket, session: pydantic.UUID4):
         # client -> server: step
         try:
             while True:
+                log.info(f"qqq 1 ws.receive_text ")
                 data = await ws.receive_text()
+                log.info(f"qqq 2 ws.receive_text {data}")
                 # validate
                 try:
+                    log.info(f"qqq 3 ws.receive_text ")
                     step = motion.session.SessionStepSpec.parse_obj(json.loads(data))
+                    log.info(f"qqq 4 ws.receive_text {step}")
                 except Exception as e:
                     log.warning(f"[Session {session}] Invalid step: {e}")
                     await ws.close(code=1007, reason="invalid step payload")
