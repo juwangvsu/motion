@@ -10,6 +10,8 @@ counter:
 
 ros:
 	python3 -m motion.tool_1 --log-level info --base http://dex:9050 quick --control keyboard --file franka_simplestack_flat.usd --runner ros --effector /World/Franka/panda_hand --device cuda --no-tick --gripper /World/Franka/panda_hand/panda_finger_joint1 --gripper /World/Franka/panda_hand/panda_finger_joint2
+		right now only print the msg if client msg is keyboard
+		if gamepad it publish Joy()
 ----------------------------------------------------
 docker compose -f docker/docker-compose.build.yml build
 

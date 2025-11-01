@@ -126,7 +126,10 @@ class Motion(Node):
             self.get_logger().info(f'Publishing: "{msg}"')
             self.joint.publish(msg)
         else:
-            assert False, f"{data}"
+            #
+            self.get_logger().info(f'tbd what to do with: "{msg}"')
+            #assert False, f"{data}"
+
         self.get_logger().info(f'Published: "{msg}"')
 
     def listener_callback(self, msg):

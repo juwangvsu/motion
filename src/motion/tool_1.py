@@ -222,7 +222,7 @@ async def f_keyboard(data_callback, step_callback):
         "S",
         "A",
         "D",
-        "Q",
+        #"Q", used for quit
         "E",
         "Z",
         "X",
@@ -247,7 +247,7 @@ async def f_keyboard(data_callback, step_callback):
                 key = read_key()
                 key=key.upper()
                 log.info(f"Event: keys event {key}")
-                if key == 'q':
+                if key == 'q' or key == 'Q':
                     print("xxx done")
                     break
                 if key in my_key:
