@@ -11,7 +11,8 @@ import urllib
 import typer
 
 import motion
-
+import pygame
+import curses
 log = logging.getLogger(__name__)
 
 
@@ -171,97 +172,51 @@ async def f_xbox(data_callback, step_callback):
 
         if xbox_changed:
             print('xxxxx xbox xmitting')
-            await step_callback(entries)
+            await step_callback(control_mode="gamepad", entries=entries)
         xbox_changed = False
 
         #await data_callback(period)
 
     return
 
-    e_axis = [
-        "AXIS_LEFTX",
-        "AXIS_LEFTY",
-        "AXIS_RIGHTX",
-        "AXIS_RIGHTY",
-        "AXIS_TRIGGERLEFT",
-        "AXIS_TRIGGERRIGHT",
-    ]
-    f_axis = {getattr(sdl2, f"SDL_CONTROLLER_{e}"): e for e in e_axis}
+import sys, termios, tty, select, time
 
-    e_button = [
-        "BUTTON_A",
-        "BUTTON_B",
-        "BUTTON_X",
-        "BUTTON_Y",
-        "BUTTON_LEFTSHOULDER",
-        "BUTTON_RIGHTSHOULDER",
-        "BUTTON_LEFTSTICK",
-        "BUTTON_RIGHTSTICK",
-        "BUTTON_START",
-        "BUTTON_BACK",
-        "BUTTON_GUIDE",
-        "BUTTON_DPAD_UP",
-        "BUTTON_DPAD_DOWN",
-        "BUTTON_DPAD_LEFT",
-        "BUTTON_DPAD_RIGHT",
-    ]
-    f_button = {getattr(sdl2, f"SDL_CONTROLLER_{e}"): e for e in e_button}
+# Map escape sequences for arrow keys
+ARROWS = {
+    b'\x1b[A': 'UP',
+    b'\x1b[B': 'DOWN',
+    b'\x1b[C': 'RIGHT',
+    b'\x1b[D': 'LEFT',
+}
+def kbhit(timeout=0.1):
+    """Return True if a key is available within timeout seconds."""
+    return select.select([sys.stdin], [], [], timeout)[0]
 
-    period = 0.1  # 10 Hz
-    joystick_index = 0
-
-    sdl2.SDL_Init(sdl2.SDL_INIT_GAMECONTROLLER | sdl2.SDL_INIT_EVENTS)
-
-    game_controller = sdl2.SDL_GameControllerOpen(joystick_index)
-    try:
-        joystick = sdl2.SDL_GameControllerGetJoystick(game_controller)
-        log.info(
-            f"GameController: {sdl2.SDL_GameControllerName(game_controller)} Joystick={sdl2.SDL_JoystickGetGUID(joystick)}"
-        )
-
-        event = sdl2.SDL_Event()
-        while True:
-            await data_callback(period)
-            while True:
-                if sdl2.SDL_PollEvent(event):
-                    if event.type not in (
-                        sdl2.SDL_CONTROLLERAXISMOTION,
-                        sdl2.SDL_CONTROLLERBUTTONDOWN,
-                        sdl2.SDL_CONTROLLERBUTTONUP,
-                    ):
-                        log.info(f"Event: {event.type} skip")
-                    else:
-                        break
-
-                await asyncio.sleep(period)
-
-            log.info(f"Event: {event.type} received")
-            if event.type == sdl2.SDL_CONTROLLERAXISMOTION:
-                entry = (f_axis.get(event.caxis.axis), event.caxis.value)
-            elif event.type in (
-                sdl2.SDL_CONTROLLERBUTTONDOWN,
-                sdl2.SDL_CONTROLLERBUTTONUP,
-            ):
-                entry = (
-                    f_button.get(event.cbutton.button),
-                    (
-                        sdl2.SDL_CONTROLLERBUTTONDOWN,
-                        sdl2.SDL_CONTROLLERBUTTONUP,
-                    ).index(event.type),
-                )
-            else:
-                assert False, f"{event}"
-            await step_callback([entry])
-
-    finally:
-        sdl2.SDL_GameControllerClose(game_controller)
-        sdl2.SDL_Quit()
-
+def read_key():
+    """Read a single keypress (handles arrow keys)."""
+    ch1 = sys.stdin.buffer.read(1)
+    if ch1 == b'\x1b':  # escape sequence
+        if kbhit(0.0001):
+            ch2 = sys.stdin.buffer.read(1)
+            if ch2 == b'[' and kbhit(0.0001):
+                ch3 = sys.stdin.buffer.read(1)
+                seq = ch1 + ch2 + ch3
+                return ARROWS.get(seq, None)
+    return ch1.decode(errors="ignore")
 
 async def f_keyboard(data_callback, step_callback):
-    import keyboard
+    fd = sys.stdin.fileno()
+    old = termios.tcgetattr(fd)
+    tty.setcbreak(fd)  # put terminal into raw mode
 
-    e_key = (
+    '''
+    stdscr = curses.initscr()
+    curses.curs_set(1)              # hide cursor
+    curses.cbreak()
+    stdscr.nodelay(True)            # non-blocking getch()
+    stdscr.keypad(True)             # enable special keys (arrows)
+    '''
+    my_key = (
         "K",
         "W",
         "S",
@@ -276,40 +231,50 @@ async def f_keyboard(data_callback, step_callback):
         "C",
         "V",
     )
-
-    period = 0.1  # 10 Hz
+    period = 0.2  # 5 Hz
 
     state = {"run": True}
+    log.info(f"Event: keyboard entry ")
 
-    def f_hook(e):
-        state["key"] = e.name.upper()
-
-    def f_stop():
-        state["run"] = False
-
-    keyboard.hook(f_hook)
-    keyboard.add_hotkey("esc", f_stop)
+    #keyboard.hook(f_hook)
+    #keyboard.add_hotkey("esc", f_stop)
 
     while state["run"]:
-        await data_callback(period)
+        #await data_callback(period)
         while True:
-            entry, state["key"] = state["key"], None
-            if entry not in e_key:
-                log.info(f"Event: {entry} skip")
-            else:
-                break
+            entries = []
+            if kbhit(0.05):
+                key = read_key()
+                key=key.upper()
+                log.info(f"Event: keys event {key}")
+                if key == 'q':
+                    print("xxx done")
+                    break
+                if key in my_key:
+                    log.info(f"Event: keyboard entry ")
+                    #entries.append((my_key[key], int(True)))
+                    entries.append(key)
+                    #entries.append(("AXIS_LEFTX", int(True)))
+
+            if len(entries)>0:
+                print('xxxxx keyboard xmitting')
+                await step_callback(control_mode='keyboard', entries=entries)
 
             await asyncio.sleep(period)
 
-        log.info(f"Event: {entry} received")
-        await step_callback([entry])
-
+            #log.info(f"Event: {entry} received")
+                # ALWAYS restore terminal state
+        termios.tcsetattr(fd, termios.TCSADRAIN, old)
+        return
+    termios.tcsetattr(fd, termios.TCSADRAIN, old)
+    return
 
 async def f_step(session, control, effector, gripper, data_callback):
     async with session.stream(start=None) as stream:
 
-        async def step_callback(entries):
-            step = {"gamepad": {effector: entries}}
+        async def step_callback(control_mode="gamepad", entries=None):
+            step = {control_mode: {effector: entries}}
+            #step = {"gamepad": {effector: entries}}
             if gripper:
                 step["metadata"] = json.dumps(
                     {"gripper": list(gripper)}, sort_keys=True

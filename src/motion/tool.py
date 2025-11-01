@@ -148,7 +148,7 @@ async def f_xbox(data_callback, step_callback):
                 last_axes[i] = axis 
                 xbox_changed = True
             entries.append((e_axis[i], max(-32767, min(32768, int(axis * 32768)))))
-        log.info(f"Pygame: axis  {entries}")
+        #log.info(f"Pygame: axis  {entries}")
 
         for i in range(min(11,joystick.get_numbuttons())):
             button = joystick.get_button(i)

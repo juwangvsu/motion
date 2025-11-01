@@ -14,7 +14,8 @@ import websockets
 
 from .motionclass import motionclass
 from .scene import RunnerSpec, Scene, SceneBase
-
+import logging
+log = logging.getLogger(__name__)
 
 class DeviceSpec(str, enum.Enum):
     cpu = "cpu"
@@ -114,6 +115,8 @@ class SessionStepSpec(pydantic.BaseModel):
                     assert False, f"{name}: {value}"
         if self.keyboard is not None:
             for entry in itertools.chain.from_iterable(self.keyboard.values()):
+                print('xxx ', entry)
+                '''
                 assert entry in (
                     "K",
                     "W",
@@ -129,7 +132,7 @@ class SessionStepSpec(pydantic.BaseModel):
                     "C",
                     "V",
                 ), f"{entry}"
-
+                '''
 
 class SessionSpec(pydantic.BaseModel):
     scene: pydantic.UUID4
@@ -216,6 +219,7 @@ class SessionStream:
         to = self._timeout_ if timeout is None else float(timeout)
         loop = asyncio.get_running_loop()
         deadline = loop.time() + to
+        log.info(f"xxx  {payload}")
 
         payload = (
             SessionStepSpec.parse_obj(payload)
