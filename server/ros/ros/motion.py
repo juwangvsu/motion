@@ -80,7 +80,8 @@ class Motion(Node):
             msg = Joy()
             msg.header.stamp = self.get_clock().now().to_msg()
             msg.header.frame_id = frame
-
+            msg.axes=[0]*6
+            msg.buttons=[0]*11
             dpad = {
                 "BUTTON_DPAD_LEFT": 0,
                 "BUTTON_DPAD_RIGHT": 0,
