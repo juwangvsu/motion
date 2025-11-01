@@ -3,7 +3,13 @@
 -----------10/30/25 tool_1 counter runner--------------------------------
 when ctrl c client, how to delete the runner at server side?
 or should the next client kill the current runner and create a new runner?
+	fix: tool_1.py add session.stop() to the final clause so ctrl c will go there.
+	
+counter:
+	python3 -m motion.tool_1 --log-level info --base http://dex:9050 quick --control keyboard --file franka_simplestack_flat.usd --runner counter --effector /World/Franka/panda_hand --device cuda --no-tick --gripper /World/Franka/panda_hand/panda_finger_joint1 --gripper /World/Franka/panda_hand/panda_finger_joint2
 
+ros:
+	python3 -m motion.tool_1 --log-level info --base http://dex:9050 quick --control keyboard --file franka_simplestack_flat.usd --runner ros --effector /World/Franka/panda_hand --device cuda --no-tick --gripper /World/Franka/panda_hand/panda_finger_joint1 --gripper /World/Franka/panda_hand/panda_finger_joint2
 ----------------------------------------------------
 docker compose -f docker/docker-compose.build.yml build
 

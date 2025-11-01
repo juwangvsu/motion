@@ -547,12 +547,15 @@ async def f_quick(
                         )
 
                 # 5) stop
+                log.info(f" xxxx session.stop")
                 await session.stop()
 
                 # 6) archive
                 client.archive(session=session, file=archive)
 
             finally:
+                log.info(f" yyy session.stop")
+                await session.stop()
                 with contextlib.suppress(Exception):
                     client.session.delete(session)
 
