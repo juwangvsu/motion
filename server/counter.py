@@ -54,7 +54,7 @@ async def run_norm(session: str, interface: Interface, channel: Channel):
             log.info(f"[run_tick] send ({data})")
             await interface.send(data)
 
-            await asyncio.sleep(1)
+            await asyncio.sleep(5)
 
     finally:
         task.cancel()

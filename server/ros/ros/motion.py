@@ -71,10 +71,10 @@ class Motion(Node):
                 "AXIS_TRIGGERRIGHT": 5,
             }
             e_pad = {
-                "BUTTON_DPAD_UP": carb.input.GamepadInput.DPAD_UP,
-                "BUTTON_DPAD_DOWN": carb.input.GamepadInput.DPAD_DOWN,
-                "BUTTON_DPAD_LEFT": carb.input.GamepadInput.DPAD_LEFT,
-                "BUTTON_DPAD_RIGHT": carb.input.GamepadInput.DPAD_RIGHT,
+                "BUTTON_DPAD_UP": 0,
+                "BUTTON_DPAD_DOWN": 1,
+                "BUTTON_DPAD_LEFT": 2,
+                "BUTTON_DPAD_RIGHT": 3,
             }
 
             msg = Joy()
@@ -127,8 +127,13 @@ class Motion(Node):
             self.get_logger().info(f'Publishing: "{msg}"')
             self.joint.publish(msg)
         else:
-            #
-            self.get_logger().info(f'tbd what to do with: "{msg}"')
+            #keyboard message, 
+            msg = Joy()
+            msg.header.stamp = self.get_clock().now().to_msg()
+            msg.header.frame_id ="" 
+            msg.axes=[0]*6
+            msg.buttons=[0]*11
+            self.get_logger().info(f'keyboard msg what to do with: "{msg}"')
             #assert False, f"{data}"
 
         self.get_logger().info(f'Published: "{msg}"')

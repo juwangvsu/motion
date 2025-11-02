@@ -593,8 +593,14 @@ async def session_stream(ws: WebSocket, session: pydantic.UUID4):
         # server -> client: data
         try:
             while True:
-                msg = await sub.next_msg()
-                await ws.send_text(msg.data.decode())
+                #msg = await sub.next_msg()
+                log.info(f"ppp 1 ws.send_text ")
+                await ws.send_text("hello")
+                #await ws.send_text(msg.data.decode())
+                log.info(f"ppp 2 ws.send_text ")
+
+                #dummy wait here
+                await asyncio.sleep(5)
         except WebSocketDisconnect:
             log.info(f"[Session {session}] WS stream send disconnected")
             return
@@ -610,6 +616,7 @@ async def session_stream(ws: WebSocket, session: pydantic.UUID4):
 
     try:
         done, pending = await asyncio.wait(
+            #{recv_task}, return_when=asyncio.FIRST_EXCEPTION
             {recv_task, send_task}, return_when=asyncio.FIRST_EXCEPTION
         )
         # cancel the other direction if one side ends/errors
