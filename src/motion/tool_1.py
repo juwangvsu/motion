@@ -133,7 +133,7 @@ async def f_xbox(data_callback, step_callback):
     last_hats = [None] * joystick.get_numhats()
     xbox_changed = True
 
-    await data_callback(period)
+    #await data_callback(period)
     while not any(
         e.type == pygame.QUIT for e in pygame.event.get()
     ):  # pygame.event.pump() implicitly called with get()
@@ -146,7 +146,7 @@ async def f_xbox(data_callback, step_callback):
                 last_axes[i] = axis 
                 xbox_changed = True
             entries.append((e_axis[i], max(-32767, min(32768, int(axis * 32768)))))
-        log.info(f"Pygame: axis  {entries}")
+        #log.info(f"Pygame: axis  {entries}")
 
         for i in range(min(11,joystick.get_numbuttons())):
             button = joystick.get_button(i)
@@ -234,7 +234,7 @@ async def f_keyboard(data_callback, step_callback):
     period = 0.2  # 5 Hz
 
     state = {"run": True}
-    log.info(f"Event: keyboard entry ")
+    #log.info(f"Event: keyboard entry ")
 
     #keyboard.hook(f_hook)
     #keyboard.add_hotkey("esc", f_stop)
@@ -281,7 +281,8 @@ async def f_step(session, control, effector, gripper, data_callback):
                 )
 
             await stream.step(step)
-            log.info(f"Step: {step}")
+            await asyncio.sleep(0.5)
+            log.info(f"step_callback sending done Step: {step}")
 
         if control == "xbox":
             await f_xbox(
@@ -531,10 +532,16 @@ async def f_quick(
                             for i in itertools.count():
                                 log.info(f"Data: wait {i}")
                                 with contextlib.suppress(asyncio.TimeoutError):
-                                    msg = await stream.data()
-                                    log.info(f"Data: {msg}")
+                                    await asyncio.sleep(4)
+                                    log.info("f_data\n\n")
+                                    # stream.data cause ws action and might mess with ws send
+                                    # when stream.step, need debug...Wang
+                                    #msg = await stream.data()
+                                    #log.info(f"Data: {msg}")
                                 await asyncio.sleep(0)
 
+                        '''
+                        '''
                         await asyncio.gather(
                             f_data(),
                             f_step(

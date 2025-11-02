@@ -235,6 +235,7 @@ class SessionStream:
 
             try:
                 # keep the single await short to allow retries
+                log.info(f"sessionstream ws sending \n\n")
                 await asyncio.wait_for(
                     self._socket_.send(msg),
                     timeout=min(1.5, remaining),
