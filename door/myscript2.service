@@ -1,0 +1,13 @@
+[Unit]
+Description=My startup script
+After=network.target
+
+[Service]
+ExecStart=/home/raspberrypi/myscript2.sh
+User=root
+Restart=on-failure
+RestartSec=20   
+
+[Install]
+WantedBy=multi-user.target
+

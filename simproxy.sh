@@ -1,4 +1,4 @@
-docker run -d \
+docker run -d --restart always\
   --name simple-proxy \
   --network=host \
   nginx:alpine \
@@ -13,7 +13,7 @@ server {
     client_max_body_size 0;
 
     location / {
-        proxy_pass http://172.17.0.3:8080;
+        proxy_pass http://172.17.0.2:8080;
 
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
