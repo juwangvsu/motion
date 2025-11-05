@@ -528,6 +528,14 @@ async def f_quick(
                         )
 
                     else:
+                        queue = asyncio.LifoQueue()
+
+                        async def f_produce():
+                            while True:
+                                with contextlib.suppress(asyncio.TimeoutError):
+                                    msg = await stream.data()
+                                    await queue.put(msg)
+
 
                         async def f_data():
                             for i in itertools.count():
@@ -538,7 +546,11 @@ async def f_quick(
                                     # stream.data cause ws action and might mess with ws send
                                     # when stream.step, need debug...Wang
                                     #msg = await stream.data()
-                                    #log.info(f"Data: {msg}")
+                                    msg = await queue.get() #get the last msg
+                                    while not queue.empty():
+                                        await queue.get()
+                                    log.info(f"Data: {msg}")
+
                                 await asyncio.sleep(0)
 
                         '''
@@ -552,6 +564,7 @@ async def f_quick(
                                 gripper=gripper,
                                 data_callback=asyncio.sleep,
                             ),
+                            f_produce(),
                         )
 
                 # 5) stop

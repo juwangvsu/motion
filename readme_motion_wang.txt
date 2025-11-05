@@ -1,3 +1,8 @@
+----------11/5/25 websocket client to server communicate ---------------
+f_keyboard ctl-c resume terminal setting 
+add f_produce() to put stream data to FILO queue
+	supress timeout inside to prevent task terminating
+
 ----------11/2/25 websocket client to server communicate ---------------
 
 issues:

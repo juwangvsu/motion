@@ -201,6 +201,7 @@ class SessionStream:
         url = f"{ws_base}/session/{self._uuid_}/stream" + (
             f"?start={self._start_}" if self._start_ is not None else ""
         )
+        log.info(f"\n\nws  reconnecting\n\n")
         self._socket_ = await websockets.connect(
             url,
             open_timeout=self._timeout_,
@@ -215,6 +216,8 @@ class SessionStream:
         the per-call timeout expires.
         """
         if self._socket_ is None:
+            log.info(f"step socket none, session  reconnecting\n\n")
+
             await self._reconnect_()
 
         to = self._timeout_ if timeout is None else float(timeout)
@@ -248,6 +251,7 @@ class SessionStream:
                 websockets.exceptions.ConnectionClosedOK,
             ):
                 # reconnect and retry until deadline
+                log.info(f"step loop connect closed, ws  reconnecting\n\n")
                 await self._reconnect_()
                 continue
 
@@ -280,6 +284,7 @@ class SessionStream:
                 websockets.exceptions.ConnectionClosedError,
                 websockets.exceptions.ConnectionClosedOK,
             ):
+                log.info(f"data loop connect closed, ws  reconnecting\n\n")
                 await self._reconnect_()
                 continue
 
