@@ -3,6 +3,19 @@ f_keyboard ctl-c resume terminal setting
 add f_produce() to put stream data to FILO queue
 	supress timeout inside to prevent task terminating
 
+python3 -m motion.tool_3 --log-level info --base http://dex:9051 quick --control keyboard --file franka_simplestack_flat.usd --runner counter --effector /World/Franka/panda_hand --device cuda --no-tick --gripper /World/Franka/panda_hand/panda_finger_joint1 --gripper /World/Franka/panda_hand/panda_finger_joint2
+
+----------11/4/25 raspberry pi work ---------------
+don't build motion-runner-isaac
+
+.docker/docker-compose.build_pi.yml
+
+run_nofetch_pi.sh
+	build images minus isaac
+run_nb.sh 
+	same as intel machine
+when run client, runner should be counter or ros, but not isaac
+
 ----------11/2/25 websocket client to server communicate ---------------
 
 issues:
