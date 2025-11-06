@@ -49,7 +49,7 @@ services:
     network_mode: "service:server"
     volumes:
       - run:/run/motion
-      - $PWD:/workspace
+      - /tmp/workspace:/workspace
       - storage:/storage
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/machine-id:/etc/machine-id:ro

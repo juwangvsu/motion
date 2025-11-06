@@ -5,6 +5,11 @@ add f_produce() to put stream data to FILO queue
 
 python3 -m motion.tool_3 --log-level info --base http://dex:9051 quick --control keyboard --file franka_simplestack_flat.usd --runner counter --effector /World/Franka/panda_hand --device cuda --no-tick --gripper /World/Franka/panda_hand/panda_finger_joint1 --gripper /World/Franka/panda_hand/panda_finger_joint2
 
+----------11/6/25 raspberry pi work ---------------
+fix src/motion/docker-compose.yml
+	$PWD:/workspace empty if launched from motion-work, so replace
+		with /tmp/workspace:/workspace
+ 
 ----------11/4/25 raspberry pi work ---------------
 don't build motion-runner-isaac
 
