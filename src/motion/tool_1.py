@@ -282,8 +282,8 @@ async def f_step(session, control, effector, gripper, data_callback):
                 )
 
             await stream.step(step)
-            await asyncio.sleep(0.5)
-            log.info(f"step_callback sending done Step: {step}")
+            #await asyncio.sleep(0.5)
+            log.info(f"step_callback sending done Step:= {step}")
 
         if control == "xbox":
             await f_xbox(
