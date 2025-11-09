@@ -1,9 +1,21 @@
+----------11/8/25 debuging log ---------------
+
+run_clientlog.sh
+run_runnerlog.sh
+
+client:
+	2>&1 | tee tt2.txt
+	cat tt2.txt |grep "Step=" |awk -F= '{print $2}'
+server:
+	docker logs -f motion-runner 2>&1 | tee ttt.txt
+	cat ttt.txt |grep "recv=" |awk -F= '{print $2}'
+
 ----------11/5/25 websocket client to server communicate ---------------
 f_keyboard ctl-c resume terminal setting 
 add f_produce() to put stream data to FILO queue
 	supress timeout inside to prevent task terminating
 
-python3 -m motion.tool_3 --log-level info --base http://dex:9051 quick --control keyboard --file franka_simplestack_flat.usd --runner counter --effector /World/Franka/panda_hand --device cuda --no-tick --gripper /World/Franka/panda_hand/panda_finger_joint1 --gripper /World/Franka/panda_hand/panda_finger_joint2
+python3 -m motion.tool_3 --log-level info --base http://dex:9051 quick --control keyboard --file franka_simplestack_flat.usd --runner counter --effector /World/Franka/panda_hand --device cuda --no-tick --gripper /World/Franka/panda_hand/panda_finger_joint1 --gripper /World/Franka/panda_hand/panda_finger_joint2 2>&1 | tee tt2.txt
 
 ----------11/6/25 raspberry pi work ---------------
 fix src/motion/docker-compose.yml
