@@ -1,3 +1,9 @@
+----------11/12/25 run_diff_ik gamepad ---------------
+root@hptitan-pctt:/workspace/isaaclab# ./isaaclab.sh -p /app/run_diff_ik.py --num_envs 1
+modify run_diff_ik to use gamepad xbox, relative mode
+
+docker run  -d -t --restart always --privileged --entrypoint bash --gpus all -e "ACCEPT_EULA=Y" --network=host     -e "PRIVACY_CONSENT=Y" -v $PWD:/app    -v ~/docker/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw     -v ~/docker/isaac-sim/cache/ov:/root/.cache/ov:rw     -v ~/docker/isaac-sim/cache/pip:/root/.cache/pip:rw     -v ~/docker/isaac-sim/cache/glcache:/root/.cache/nvidia/GLCache:rw     -v ~/docker/isaac-sim/cache/computecache:/root/.nv/ComputeCache:rw     -v ~/docker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw     -v ~/docker/isaac-sim/data:/root/.local/share/ov/data:rw     -v ~/docker/isaac-sim/documents:/root/Documents:rw -e DISPLAY=${DISPLAY} -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority  --name isaaclab jwang3vsu/isaaclab:2.2.0 
+
 ----------11/8/25 debuging log ---------------
 
 run_clientlog.sh
