@@ -11,10 +11,10 @@ run_runnerlog.sh
 
 client:
 	2>&1 | tee tt2.txt
-	cat tt2.txt |grep "Step=" |awk -F= '{print $2}'
+	cat tt2.txt |grep "Step=" |awk -F= '{print $2}' > ttclient.txt
 server:
 	docker logs -f motion-runner 2>&1 | tee ttt.txt
-	cat ttt.txt |grep "recv=" |awk -F= '{print $2}'
+	cat ttt.txt |grep "recv=" |awk -F= '{print $2}' > ttrunner.txt
 
 ----------11/5/25 websocket client to server communicate ---------------
 f_keyboard ctl-c resume terminal setting 
