@@ -477,6 +477,8 @@ async def f_quick(
     effector,
     gripper,
     archive,
+    dbgflg,
+    spawnnode,
 ):
     """
     One-shot flow:
@@ -504,7 +506,8 @@ async def f_quick(
         ) as session:
             try:
                 # 3) play
-                await session.play(device=device, model=model, tick=tick)
+                if spawnnode:
+                    await session.play(device=device, model=model, tick=tick)
 
                 # 4) drive (xbox loop)
                 async with session.stream(start=1) as stream:
@@ -569,16 +572,18 @@ async def f_quick(
 
                 # 5) stop
                 log.info(f" xxxx session.stop")
-                await session.stop()
+                if not dbgflg:
+                    await session.stop()
 
                 # 6) archive
                 client.archive(session=session, file=archive)
 
             finally:
                 log.info(f" yyy session.stop")
-                await session.stop()
-                with contextlib.suppress(Exception):
-                    client.session.delete(session)
+                if not dbgflg:
+                    await session.stop()
+                    with contextlib.suppress(Exception):
+                        client.session.delete(session)
 
         with contextlib.suppress(Exception):
             client.scene.delete(scene)
@@ -889,6 +894,8 @@ def quick_callback(
         None, "--model", help="model|bounce|remote"
     ),
     tick: typing.Optional[bool] = typer.Option(None, "--tick/--no-tick"),
+    dbgflg: typing.Optional[bool] = typer.Option(None, "--dbg/--no-dbg"),
+    spawnnode: typing.Optional[bool] = typer.Option(None, "--spawn/--no-spawn"),
     control: str = typer.Option("xbox", "--control"),
     effector: str = typer.Option(..., "--effector", help="Link name of end effector"),
     gripper: typing.Optional[typing.List[str]] = typer.Option(
@@ -960,6 +967,8 @@ def quick_callback(
             effector=effector,
             gripper=gripper,
             archive=archive,
+            dbgflg=dbgflg,
+            spawnnode=spawnnode,
         )
     )
     f_print({"status": "ok", "archive": archive}, output=context.obj["output"])

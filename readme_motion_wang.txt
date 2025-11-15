@@ -8,6 +8,21 @@ sticky:
 			at each step, and the step runs at relative low hz?
 		there is no messgae delay observed in server and model
 	
+----------11/16/25 modify tool_3 and work/server for debug ---------------
+wang branch:
+when ctl-c client and rerun, need to have isacc-runner not respawn so can quick 
+run/debug
+
+tool_3: add --dbg --spawn flag:
+	(0) isaac-runner entry sleep infiniti, need to exec and run cmd line manuelly. this is intended for debugging.
+	(1) tool_3 --spawn --dbg
+		isaac-runner will be spawned at server, when ctl-c, it will not be stopped
+	(2) tool_3 --dbg
+		will not spawn runner, 
+status:
+	client data make to the server, but server did not put into channel.
+	check session id etc.
+
 ----------11/15/25 mount host data folder for isaac runner ---------------
 work combine src/motion/docker-compose.yml and a locally tmp yml file
 field are combined and overriden
