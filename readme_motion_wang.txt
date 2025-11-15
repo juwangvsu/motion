@@ -1,3 +1,10 @@
+sticky:
+	tbd: rerun motion.extension from previous docker without recreate container
+		to modify both work and runner-isaac
+	tbd: 11/15/25
+		compare this with tang's version to identify lag difference
+		there is no messgae delay observed in server and model
+	
 ----------11/15/25 mount host data folder for isaac runner ---------------
 work combine src/motion/docker-compose.yml and a locally tmp yml file
 field are combined and overriden
@@ -7,14 +14,18 @@ host volumn mounted for runner:
 	isaaclab image use /workspace, so don't mount anything else there
 
 
-status:
+
+status & issue:
 	client connect isaac runner ok, currently set to manuel starting once 
 	runner is up:
-	/isaac-sim/runheadless.sh --enable motion.extension --enable isaacsim.replicator.agent.core --enable isaacsim.replicator.writers
+	/isaac-sim/runheadless.sh --enable motion.extension --enable isaacsim.replicator.agent.core --enable isaacsim.replicator.writers --/log/outputStream=stdout --/log/outputStreamLevel=info --/log/fileEnabled=false
 
 	xbox data deliver to counter and model ok, so ws and channel works fine.
 		to isaac seems delayed, check the extension code itself.
+	(2)
+	tang's version f_step() not awaited ok, my version f_step not called if no await. PROBLEM IS NO ERROR OR EXCPION was reported at console
 
+	
 ----------11/12/25 run_diff_ik gamepad ---------------
 root@hptitan-pctt:/workspace/isaaclab# ./isaaclab.sh -p /app/run_diff_ik.py --num_envs 1
 modify run_diff_ik to use gamepad xbox, relative mode
