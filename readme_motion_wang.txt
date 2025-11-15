@@ -2,7 +2,10 @@ sticky:
 	tbd: rerun motion.extension from previous docker without recreate container
 		to modify both work and runner-isaac
 	tbd: 11/15/25
-		compare this with tang's version to identify lag difference
+		both this and tang version show lagged xbox message
+		especially when client send out > 2 second joysticks
+			might be related to f_step only retrieve one message
+			at each step, and the step runs at relative low hz?
 		there is no messgae delay observed in server and model
 	
 ----------11/15/25 mount host data folder for isaac runner ---------------
