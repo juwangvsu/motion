@@ -1,7 +1,7 @@
-+ '[' -z /home/student/Documents/motion_main/motion ']'
++ '[' -z /home/student/Documents/motion_wang/motion ']'
 + python -m server.counter
-INFO:__main__:[main] meta={'session': 'ea7bc29e-a022-47aa-b9c3-0efa66a2e230', 'runner': 'counter', 'device': 'cuda', 'model': 'remote', 'tick': False}
-INFO:__main__:[run_node] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230 tick=False
+INFO:__main__:[main] meta={'session': 'd080e788-a3e4-4b4a-83f3-c9f0310658c9', 'runner': 'counter', 'device': 'cuda', 'model': 'remote', 'tick': False}
+INFO:__main__:[run_node] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9 tick=False
 INFO:server.channel:[Channel.__init__] servers=nats://127.0.0.1:4222
 INFO:server.channel:[Channel.start] called
 INFO:server.channel:[Channel.start] Connecting to NATS at nats://127.0.0.1:4222 ...
@@ -12,165 +12,209 @@ INFO:server.interface:[ready(async)] connect addr=ipc:///run/motion/runner.sock
 INFO:server.interface:[ready(async)] connected
 INFO:__main__:[run_node] ready
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 0}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 0}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 0}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 0}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 1}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 1}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 1}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 1}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 1]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 2}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 2}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 2}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 2}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 0]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 3}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 3}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 3}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 3}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 1]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 0]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 4}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 4}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 4}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 4}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 5}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 5}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 5}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 5}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 1]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 0]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 6}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 6}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 6}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 6}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 7}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 7}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 7}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 7}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 2036]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 935]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 274]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -276]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -827]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -937]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 1499]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 899]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -1488]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 799]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 1]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 0]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 8}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 8}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 8}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 8}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -1818]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 700]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2149]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 500]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -1818]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2149]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 0]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2259]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2700]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -299]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 1]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 9}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=25
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 9}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=25
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 9}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 9}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -3581]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -799]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -5013]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -1298]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -6444]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -1698]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -7105]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -1798]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -7436]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2098]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["BUTTON_A", 0]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 10}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 10}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 10}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 10}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2397]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -7656]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2797]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -8537]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -3496]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -9088]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -3696]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -9418]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -3796]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -9859]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 11}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 11}}'
-INFO:__main__:[run_norm] send=b'{"joint": {"counter": 11}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -4096]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -3996]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -9528]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -3896]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -9198]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -7325]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2797]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -6004]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -1798]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -3250]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 12}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 12}}'
-INFO:__main__:[run_norm] send=b'{"joint": {"counter": 12}}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2920]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
-INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -1498]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 2807]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 2147]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 2897]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 2398]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 1376]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 1898]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 825]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 1699]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -56]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 1199]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -607]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 999]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -937]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 700]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -1268]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 500]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -1929]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -200]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2149]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -499]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2369]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -899]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -2810]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -1598]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -3360]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -1898]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -5563]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2297]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -6995]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2397]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -7986]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2497]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -11951]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2397]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -13604]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2597]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -16137]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2397]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -18560]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2597]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -20983]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2697]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -22194]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -2997]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -24728]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -4195]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -26270]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -4495]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -28252]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -4795]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -28693]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -30896]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -32548]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -4895]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -32768]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 11}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 11}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 11}}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -4795]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -31887]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -31336]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -30896]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -30345]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -29904]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -29464]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -29023]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -28583]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -26380]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -19111]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -4295]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -3360]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 500]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", -387]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -100]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 494]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 12}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 12}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 12}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 13}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 13}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 13}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 13}}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", 200]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTY", 715]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 14}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 14}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 14}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 14}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 15}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 15}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 15}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 15}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 16}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 16}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 16}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 16}}'
+INFO:__main__:[run_norm] recv=b'{"gamepad": {"/World/Franka/panda_hand": [["AXIS_RIGHTX", -100]]}, "metadata": "{\\"gripper\\": [\\"/World/Franka/panda_hand/panda_finger_joint1\\", \\"/World/Franka/panda_hand/panda_finger_joint2\\"]}"}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 17}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 17}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 17}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 17}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 18}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 18}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 18}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 18}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 19}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 19}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 19}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 19}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 20}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 20}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 20}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 20}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 21}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 21}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 21}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 21}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 22}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 22}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 22}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 22}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 23}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 23}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 23}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 23}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 24}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 24}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 24}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 24}}'
 INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 25}}')
-INFO:server.channel:[Channel.publish_data] session=ea7bc29e-a022-47aa-b9c3-0efa66a2e230, size=26
-INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.ea7bc29e-a022-47aa-b9c3-0efa66a2e230: b'{"joint": {"counter": 25}}'
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 25}}'
 INFO:__main__:[run_norm] send=b'{"joint": {"counter": 25}}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 26}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 26}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 26}}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 27}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 27}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 27}}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 28}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 28}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 28}}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 29}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 29}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 29}}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 30}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 30}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 30}}'
+INFO:__main__:[run_norm] channel send (b'{"joint": {"counter": 31}}')
+INFO:server.channel:[Channel.publish_data] session=d080e788-a3e4-4b4a-83f3-c9f0310658c9, size=26
+INFO:server.channel:[Channel.publish_data] Publish (core) motion.data.d080e788-a3e4-4b4a-83f3-c9f0310658c9: b'{"joint": {"counter": 31}}'
+INFO:__main__:[run_norm] send=b'{"joint": {"counter": 31}}'

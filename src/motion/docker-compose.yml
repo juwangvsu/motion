@@ -49,7 +49,7 @@ services:
     network_mode: "service:server"
     volumes:
       - run:/run/motion
-      - /tmp/workspace:/workspace
+      - /tmp/workspace:/workspace2
       - storage:/storage
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/machine-id:/etc/machine-id:ro
@@ -90,6 +90,15 @@ services:
       - server
     network_mode: "service:server"
     volumes:
+      - /tmp/workspace:/workspace2
+      - /isaacdocker/isaac-sim/cache/kit:/isaac-sim/kit/cache:rw
+      - /isaacdocker/isaac-sim/cache/ov:/root/.cache/ov:rw
+      - /isaacdocker/isaac-sim/cache/pip:/root/.cache/pip:rw
+      - /isaacdocker/isaac-sim/cache/glcache:/root/.cache/nvidia/GLCache:rw
+      - /isaacdocker/isaac-sim/cache/computecache:/root/.nv/ComputeCache:rw
+      - /isaacdocker/isaac-sim/logs:/root/.nvidia-omniverse/logs:rw
+      - /isaacdocker/isaac-sim/data:/root/.local/share/ov/data:rw
+      - /isaacdocker/isaac-sim/documents:/root/Documents:rw
       - run:/run/motion
       - storage:/storage:ro
     environment:
